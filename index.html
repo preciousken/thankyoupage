@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>GET DETAILS</title>
+ <!-- axios -->
+ <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+ <!--  styles-->
+ <link rel="stylesheet" href="styles.css">
+
+
+<!-- styles goes in here -->
+
+<style type="text/css" >
+	*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family:helvetica;
+}
+body{
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+form	{
+	background: #f8f8f8	;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	box-shadow: 2px 2px 2px 2px #222;
+	width: 95vw;
+	max-width: 600px;
+}
+.btn{
+	padding: 10px;
+	background: red;
+	margin: 10px 0;
+	border: none;
+	border-radius: 5px;
+	color: white;
+}
+p{
+	font-size: 0.9rem;
+	color: red;
+}
+input{
+	height: 30px;
+	padding: 10px;
+	margin:10px;
+}
+</style>
+
+<!-- ////////////// -->
+
+
+</head>
+<body>
+<form>
+	<h1>Thanks for Signing up</h1>
+	<input class="email" required type="email" placeholder="confirm email" />
+	<button type="submit" class="btn">Click for details</button>
+	<p><!-- CHECK YOUR EMAIL FOR COURSE OUTLINE --></p>
+	<p></p>
+</form>
+
+	<!-- <script src="app.js"></script> -->
+
+
+
+
+	<!-- script goes in here -->
+	<script type="text/javascript">
+		
+let email = document.querySelector(".email")
+// submit button
+const submit = document.querySelector('.btn')
+
+submit.addEventListener('click', (e) => {
+ e.preventDefault()
+ 
+ const toBackEnd = {
+  email: email.value,
+ }
+ if (email.value) {
+  console.log(email.value)
+
+    submit.style.backgroundColor = "grey";
+    submit.innerHTML = "sending";
+  document.querySelector(".btn").disabled = true;
+  document.querySelector('.btn').style.backgroundColor='grey'
+  
+try {
+  const INFO = async () => {
+    await axios
+      .post("https://nodemailerautomation.herokuapp.com/receive",toBackEnd)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+    submit.style.backgroundColor = "";
+    submit.innerHTML = "Sent";
+    document.querySelector(".btn").disabled = true;
+
+  };
+  INFO();
+} catch (error) {
+  console.log(error);
+}
+ }else{
+  console.log('some left overs')
+
+
+  }
+})
+
+	</script>
+
+	<!-- ////////////////// -->
+</body>
+</html>
