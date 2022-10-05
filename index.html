@@ -105,8 +105,8 @@ try {
       .post("https://nodemailerautomation.herokuapp.com/receive",toBackEnd)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
-    submit.style.backgroundColor = "";
-    submit.innerHTML = "Sent";
+    submit.style.backgroundColor = "grey";
+    submit.innerHTML = "Check Email sent";
     document.querySelector(".btn").disabled = true;
 
   };
